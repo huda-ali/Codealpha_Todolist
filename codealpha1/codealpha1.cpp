@@ -4,19 +4,21 @@
 #include <vector>
 #include <string>
 
+using namespace std;
+
 class Task {
 private:
-    std::string description;
+    string description;
     bool completed;
 
 public:
-    Task(const std::string& desc) : description(desc), completed(false) {}
+    Task(const string& desc) : description(desc), completed(false) {}
 
     void markAsCompleted() {
         completed = true;
     }
 
-    std::string getDescription() const {
+   string getDescription() const {
         return description;
     }
 
@@ -27,33 +29,33 @@ public:
 
 class ToDoList {
 private:
-    std::vector<Task> tasks;
+    vector<Task> tasks;
 
 public:
-    void addTask(const std::string& description) {
+    void addTask(const string& description) {
         tasks.emplace_back(description);
-        std::cout << "Task was added ." << std::endl;
+        cout << "Task was added ." << endl;
     }
 
     void markTaskAsCompleted(int index) {
         if (index >= 0 && index < tasks.size()) {
             tasks[index].markAsCompleted();
-            std::cout << "Task completed." << std::endl;
+           cout << "Task completed." << endl;
         }
         else {
-            std::cout << "Invalid index. Task not found." << std::endl;
+          cout << "Invalid index. Task not found." << endl;
         }
     }
 
     void viewTasks() const {
-        std::cout << "YOUR TASKS:" << std::endl;
+       cout << "YOUR TASKS:" << endl;
         for (size_t i = 0; i < tasks.size(); ++i) {
-            std::cout << i + 1 << ". ";
+            cout << i + 1 << ". ";
             if (tasks[i].isCompleted())
-                std::cout << "[X] ";
+               cout << "[X] ";
             else
-                std::cout << "[ ] ";
-            std::cout << tasks[i].getDescription() << std::endl;
+               cout << "[ ] ";
+           cout << tasks[i].getDescription() << endl;
         }
     }
 };
@@ -61,34 +63,34 @@ public:
 int main() {
     ToDoList todoList;
     int choice;
-    std::string description;
+    string description;
 
     while (true) {
-        std::cout << "\n1. Add a task\n2. Mark a task as completed\n3. View tasks\n4. Exit" << std::endl;
-        std::cout << "Enter your choice: ";
-        std::cin >> choice;
-        std::cin.ignore(); 
+       cout << "\n1. Add a task\n2. Mark a task as completed\n3. View tasks\n4. Exit" << endl;
+       cout << "Enter your choice: ";
+       cin >> choice;
+        cin.ignore(); 
         switch (choice) {
         case 1:
-            std::cout << " ENTER TASK DESCRIPTION : ";
-            std::getline(std::cin, description);
+           cout << " ENTER TASK DESCRIPTION : ";
+            getline(std::cin, description);
             todoList.addTask(description);
             break;
         case 2:
             int index;
-            std::cout << "ENTER THE INDEX OF A TASK TO MARK AS COMPLETED ";
-            std::cin >> index;
-            std::cin.ignore(); 
+            cout << "ENTER THE INDEX OF A TASK TO MARK AS COMPLETED ";
+            cin >> index;
+            cin.ignore(); 
             todoList.markTaskAsCompleted(index - 1);
             break;
         case 3:
             todoList.viewTasks();
             break;
         case 4:
-            std::cout << " EXISTING PROGRAM" << std::endl;
+           cout << " EXISTING PROGRAM" << endl;
             return 0;
         default:
-            std::cout << " INVALID CHOICE ENTER A NUMBER BETWEEN 1 AND 4" << std::endl;
+            cout << " INVALID CHOICE ENTER A NUMBER BETWEEN 1 AND 4" <<endl;
         }
     }
 
